@@ -1,16 +1,13 @@
 package bg.mentormate.academy.maria.movies.activities;
 
-import android.app.ActionBar;
-import android.app.Fragment;
-import android.app.FragmentManager;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
-import android.app.Activity;
+import android.util.DisplayMetrics;
 import android.util.Log;
-import android.widget.Toast;
-
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,7 +15,6 @@ import java.util.TimeZone;
 
 import bg.mentormate.academy.maria.movies.R;
 import bg.mentormate.academy.maria.movies.persisters.Constants;
-import bg.mentormate.academy.maria.movies.persisters.CustomTabListener;
 import bg.mentormate.academy.maria.movies.persisters.DownloadTask;
 
 /**
@@ -89,6 +85,43 @@ public class MovieListActivity extends Activity
         //tab.setTabListener(new CustomTabListener());
         //actionBar.addTab(tab);
 
+        //get information about the screen.
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        float scaleFactor = metrics.density;
+        int widthPixels = metrics.widthPixels;
+        int heightPixels = metrics.heightPixels;
+        float widthDpi = metrics.xdpi;
+        float heightDpi = metrics.ydpi;
+        float widthInches = widthPixels / widthDpi;
+        float heightInches = heightPixels / heightDpi;
+        double diagonalInches = Math.sqrt(
+                (widthInches * widthInches) +
+                (heightInches * heightInches)
+        );
+        if (diagonalInches >= 10) {
+            //Device is a 10" tablet
+            mTwoPane = true;
+        } else if (diagonalInches >= 7) {
+            //Device is a 7" tablet
+            mTwoPane = true;
+        } else {
+            //Device is a phone
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                mTwoPane = true;
+            } else {
+                mTwoPane = false;
+            }
+        }
+
+        if (mTwoPane == true) {
+            // In two-pane mode, list items should be given the
+            // 'activated' state when touched.
+            ((MovieListFragment) getFragmentManager()
+                    .findFragmentById(R.id.movie_list))
+                    .setActivateOnItemClick(true);
+        }
+/*
         if (findViewById(R.id.movie_detail_container) != null) {
             // The detail container view will be present only in the
             // large-screen layouts (res/values-large and
@@ -102,7 +135,7 @@ public class MovieListActivity extends Activity
                     .findFragmentById(R.id.movie_list))
                     .setActivateOnItemClick(true);
         }
-
+*/
         // TODO: If exposing deep links into your app, handle intents here.
     }
 

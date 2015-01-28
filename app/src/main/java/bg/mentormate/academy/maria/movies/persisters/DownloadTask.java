@@ -208,7 +208,11 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                     values.put(Constants.DB_TABLE_MOVIES_ID, movie_id);
                     values.put(Constants.DB_TABLE_MOVIES_TITLE, movie.getString("title"));
                     values.put(Constants.DB_TABLE_MOVIES_YEAR, movie.getInt("year"));
-                    values.put(Constants.DB_TABLE_MOVIES_RUNTIME, Integer.valueOf(movie.getString("runtime")));
+                    String runtime = movie.getString("runtime");
+                    if (new String("").equals(runtime)) {
+                        runtime = "0";
+                    }
+                    values.put(Constants.DB_TABLE_MOVIES_RUNTIME, Integer.valueOf(runtime));
                     values.put(Constants.DB_TABLE_MOVIES_DESCRIPTION, movie.getString("synopsis"));
                     JSONObject ratings = movie.getJSONObject("ratings");
                     values.put(Constants.DB_TABLE_MOVIES_RATING, ratings.getInt("critics_score"));
