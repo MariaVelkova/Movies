@@ -1,0 +1,26 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:id="@+id/movie_detail"
+    android:orientation="vertical"
+    tools:context="bg.mentormate.academy.maria.movies.activities.MovieDetailFragment">
+
+    <TextView android:id="@+id/movie_title"
+        style="?android:attr/textAppearanceLarge" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:textIsSelectable="true"
+        />
+    <TextView android:id="@+id/movie_rating"
+        style="?android:attr/textAppearanceLarge" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:textIsSelectable="true"
+        />
+    <TextView android:id="@+id/movie_release_date"
+        style="?android:attr/textAppearanceLarge" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:textIsSelectable="true"
+        />
+    <TextView android:id="@+id/movie_description"
+        style="?android:attr/textAppearanceLarge" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:textIsSelectable="true"
+        />
+</LinearLayout>

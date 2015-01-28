@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Movies</string>
+    <string name="title_movie_list">Movies</string>
+    <string name="title_movie_detail">Movie Detail</string>
+    <string name="rating">Rating: %1$d</string>
+    <string name="release">Release Date: %1$s</string>
+
+</resources>
